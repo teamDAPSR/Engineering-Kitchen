@@ -9,3 +9,6 @@ EngineeringKitchen.iml
 Engineering-Kitchen.iml
 *.log
 /gradle/
+/app/build/
+gradlew
+gradle.properties
