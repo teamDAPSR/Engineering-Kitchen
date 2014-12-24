@@ -12,3 +12,4 @@ Engineering-Kitchen.iml
 /app/build/
 gradlew
 gradle.properties
+/app/progaurd-rules.pro
