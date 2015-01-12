@@ -1,46 +1,111 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <include layout="@layout/toolbar" />
 
 
     <android.support.v4.widget.DrawerLayout
-        android:layout_width="match_parent"
         android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <!-- activity view -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="#fff"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#fff">
 
             <TextView
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="Activity Content"
-                android:layout_height="wrap_content" />
+                android:textColor="#000" />
         </RelativeLayout>
 
         <!-- navigation drawer -->
         <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="left|start"
-            android:layout_width="match_parent"
-            android:background="#fff"
-            android:layout_height="match_parent">
+            android:background="#fff">
 
-            <ListView
-                android:id="@+id/left_drawer"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="#eee"
-                android:background="#fff"
-                android:dividerHeight="1dp" />
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8">
+
+                    <ListView
+                        android:id="@+id/left_drawer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:divider="#eee"
+                        android:dividerHeight="2dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:gravity="center"
+                        android:text="New Text"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:gravity="center"
+                        android:text="New Text"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+
         </RelativeLayout>
 
     </android.support.v4.widget.DrawerLayout>

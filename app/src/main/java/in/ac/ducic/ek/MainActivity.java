@@ -7,20 +7,26 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private ListView leftDrawerList;
-    private ArrayAdapter<String> navigationDrawerAdapter;
-    private String[] leftSliderData = {"Home", "Android", "Sitemap", "About", "Contact Me"};
+    private ArrayList<String> stringArrayAdapter;
+    private String[] leftSliderData = {"Home", "Android", "Sitemap", "About", "Contact Me", "Contact Me1", "Contact Me2", "Contact Me3"};
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +42,39 @@ public class MainActivity extends ActionBarActivity {
 
     private void nitView() {
         leftDrawerList = (ListView) findViewById(R.id.left_drawer);
+        stringArrayAdapter= new ArrayList<String>();
+        stringArrayAdapter.add("Home");
+        stringArrayAdapter.add("Home1");
+        stringArrayAdapter.add("Home2");
+        stringArrayAdapter.add("Home3");
+        stringArrayAdapter.add("ghg");
+        stringArrayAdapter.add("Home2");
+        stringArrayAdapter.add("Home3");
+        stringArrayAdapter.add("Home4");
+        stringArrayAdapter.add("Home5");
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        navigationDrawerAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, leftSliderData);
+        MyAdapter navigationDrawerAdapter = new MyAdapter(this,stringArrayAdapter);
+        LayoutInflater inflater = getLayoutInflater();
+        //LinearLayout listFooterView = (LinearLayout)inflater.inflate(
+        //      R.layout., null);
+
+
+
+
+        LinearLayout listHeaderView = (LinearLayout)inflater.inflate(
+                R.layout.header, null);
+
+        leftDrawerList.addHeaderView(listHeaderView);
         leftDrawerList.setAdapter(navigationDrawerAdapter);
+
+
     }
 
     private void initDrawer() {
-
+       // setListViewHeightBasedOnChildren(leftDrawerList);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
 
             @Override
@@ -62,6 +93,7 @@ public class MainActivity extends ActionBarActivity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
         leftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
     }
 
     @Override
@@ -96,7 +128,17 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private class DrawerItemClickListener implements ListView.OnItemClickListener{
+
+    /**
+     * Swaps fragments in the main content view
+     */
+    private void selectItem(int position) {
+        // Create a new fragment and specify the planet to show based on position
+        Intent x = new Intent(this, navigationclickresult.class);
+        startActivity(x);
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
@@ -104,11 +146,5 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /** Swaps fragments in the main content view */
-    private void selectItem(int position) {
-        // Create a new fragment and specify the planet to show based on position
-        Intent x=new Intent(this,navigationclickresult.class);
-        startActivity(x);
-    }
 
 }
