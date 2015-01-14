@@ -14,16 +14,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
         android:src="@drawable/ic_launcher"
-        android:layout_weight=".7"/>
+        android:layout_weight=".6"/>
     <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:textAlignment="center"
         android:text="label"
         android:textSize="20sp"
-
+        android:layout_weight=".4"
         />
 
 </LinearLayout>
