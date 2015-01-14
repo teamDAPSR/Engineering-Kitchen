@@ -3,6 +3,7 @@ package in.ac.ducic.ek;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -21,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -32,7 +35,9 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<String> stringArrayAdapter;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
-
+    private Timer timer;
+    private int count =0;
+    private boolean one_two_three=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +61,33 @@ public class MainActivity extends ActionBarActivity {
                 invalidateOptionsMenu();
             }
         });
+        final Handler handler = new Handler();
 
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if(one_two_three){
+                mPager.setCurrentItem(count++, true);}
+                else{
+                    mPager.setCurrentItem(count--,true);
+                }
+                if(count==0){
+                    one_two_three=true;
+                }
+                if(count==NUM_PAGES){
+                    one_two_three=false;
+                }
+
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 1000, 5000);
 
     }
 
@@ -69,25 +100,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*switch (item.getItemId()) {
-            case android.R.id.home:
-                // Navigate "up" the demo structure to the launchpad activity.
-                // See http://developer.android.com/design/patterns/navigation.html for more.
-                NavUtils.navigateUpTo(this, new Intent(this, MainActivity.class));
-                return true;
-
-            case R.id.action_previous:
-                // Go to the previous step in the wizard. If there is no previous step,
-                // setCurrentItem will do nothing.
-                mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-                return true;
-
-            case R.id.action_next:
-                // Advance to the next step in the wizard. If there is no next step, setCurrentItem
-                // will do nothing.
-                mPager.setCurrentItem(mPager.getCurrentItem() + 1);
-                return true;
-        }*/
 
         return super.onOptionsItemSelected(item);
     }
