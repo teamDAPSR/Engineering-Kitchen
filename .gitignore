@@ -4,15 +4,15 @@
 /.idea/libraries
 .DS_Store
 /build
-<<<<<<< HEAD
+
 /.idea/
 EngineeringKitchen.iml
 Engineering-Kitchen.iml
 *.log
 /gradle/
-=======
+
 app.iml
 src/androidTest/
 ./.idea/
 ./EngineeringKitchen.iml
->>>>>>> Sagar
+
